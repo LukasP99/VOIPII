@@ -16,6 +16,7 @@ services:
     ports:
       - 5060:5060/UDP
       - 10000-10100:10000-10100/UDP
+      - 5038:5038
     networks:
       - net
 
