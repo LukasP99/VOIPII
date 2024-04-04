@@ -39,5 +39,40 @@ services:
     networks:
       - net
 
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - 443:443
+    depends_on:
+      - fastapi
+    networks:
+      - net
+
+  fastapi:
+    build:
+      context: ./fastapi
+    expose:
+      - 8080
+    depends_on:
+      - database
+    ports:
+      - 8080:8080
+    networks:
+      - net
+
+  kamailio:
+    build:
+      context: ./kamailio
+    expose:
+      - 5060/UDP
+    ports:
+      - 5061:5061/TCP
+    depends_on:
+      - asterisk
+      - database
+    networks:
+      - net
+
 networks:
   net:
