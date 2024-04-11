@@ -1,0 +1,60 @@
+version: '3.9'
+
+services:
+
+  asterisk1:
+    build:
+      context: ./asterisk
+      #args:
+       # - db_url=postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@database:5432/$POSTGRES_DB
+    #depends_on:
+    #  - database
+    volumes:
+      - ./asterisk/etc/asterisk1:/etc/asterisk
+      #- ./asterisk/etc/odbc.ini:/etc/odbc.ini
+      #- ./asterisk/etc/odbcinst.ini:/etc/odbcinst.ini
+    ports:
+      - 5060:5060/UDP
+      - 10000-10100:10000-10100/UDP
+      #- 5038:5038
+    networks:
+      - net
+
+  asterisk2:
+    build:
+      context: ./asterisk
+      #args:
+       # - db_url=postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@database:5432/$POSTGRES_DB
+    #depends_on:
+     # - database
+    volumes:
+      - ./asterisk/etc/asterisk2:/etc/asterisk
+      #- ./asterisk/etc/odbc.ini:/etc/odbc.ini
+     # - ./asterisk/etc/odbcinst.ini:/etc/odbcinst.ini
+    expose:
+      - 5060/UDP
+      - 10000-10100/UDP
+      #- 5038:5038
+    networks:
+      - net
+
+  asterisk3:
+    build:
+      context: ./asterisk
+      #args:
+      #  - db_url=postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@database:5432/$POSTGRES_DB
+    #depends_on:
+     # - database
+    volumes:
+      - ./asterisk/etc/asterisk3:/etc/asterisk
+      #- ./asterisk/etc/odbc.ini:/etc/odbc.ini
+      #- ./asterisk/etc/odbcinst.ini:/etc/odbcinst.ini
+    expose:
+      - 5060/UDP
+      - 10000-10100/UDP
+      # - 5038:5038
+    networks:
+      - net
+
+networks:
+  net:

@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "voip2-backend"
+version = "0.1.0"
+description = ""
+authors = ["Jan Rozhon <jan@rozhon.eu>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.110.1"
+pydantic-settings = "^2.2.1"
+pydantic = "^2.6.4"
+uvicorn = "^0.29.0"
+asterisk-ami = "^0.1.7"
+
+[tool.poetry.scripts]
+voip2be = 'voip2_backend.console:run'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
